@@ -1889,6 +1889,10 @@ declare interface NetworkMp {
 	endBatch(): void;
 }
 
+declare interface SyncMp {
+	rate: number;
+}
+
 declare interface Mp {
 	Player: typeof PlayerMp;
 	players: PlayerMpPool;
@@ -1929,6 +1933,8 @@ declare interface Mp {
 
 	joaat(str: string): number;
 	joaat(strs: string[]): number[];
+
+	sync: SyncMp;
 }
 
 declare const mp: Mp;
