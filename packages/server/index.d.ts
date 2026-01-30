@@ -1893,6 +1893,64 @@ declare interface SyncMp {
 	rate: number;
 }
 
+
+/**
+ * CommandsMp interfaces
+ */
+
+declare interface CommandsMpInterface {
+	name: string;
+    aliases?: string[];
+    args?: CommandsMpArgs[];
+    adminLevel?: number;
+    cooldown?: number;
+}
+
+declare type CommandsMpArgType = {
+    string: string;
+    number: number;
+    player: PlayerMp;
+};
+
+declare interface CommandsMpArgDefinition<K extends keyof CommandsMpArgType = keyof CommandsMpArgType> {
+	name: string;
+    type: K;
+    optional?: boolean;
+    rest?: boolean;
+}
+
+declare interface CommandsMpOptions<
+  T extends readonly CommandsMpArgDefinition[] = readonly CommandsMpArgDefinition[]
+> {
+  name: string;
+  aliases?: string[];
+  args?: T;
+  adminLevel?: number;
+  cooldown?: number;
+
+  execute: (
+    player: PlayerMp,
+    args: {
+      [P in T[number] as P["name"]]: CommandsMpArgType[P["type"]];
+    }
+  ) => void;
+}
+
+declare interface CommandsMpArgs<K extends keyof CommandsMpArgType = keyof CommandsMpArgType> {
+	name: string;
+	type: K;
+	optional?: boolean;
+	rest?: boolean;
+}
+
+declare interface CommandsMp {
+	add: <T extends CommandsMpArgs[]>(command: CommandsMpOptions<T>) => void;
+    execute: (player: PlayerMp, raw: string) => void;
+    commands: Map<string, CommandsMpOptions & { lastUse: Map<number, number> }>;
+    getCommands: (player: PlayerMp) => CommandsMpInterface[];
+}
+
+
 declare interface Mp {
 	Player: typeof PlayerMp;
 	players: PlayerMpPool;
@@ -1934,7 +1992,13 @@ declare interface Mp {
 	joaat(str: string): number;
 	joaat(strs: string[]): number[];
 
-	sync: SyncMp;
+	
+	/**
+	 * custom command entities
+	 */
+
+	commands: CommandsMp;
+
 }
 
 declare const mp: Mp;
