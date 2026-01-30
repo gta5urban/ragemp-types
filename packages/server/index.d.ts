@@ -1943,13 +1943,16 @@ declare interface CommandsMpArgs<K extends keyof CommandsMpArgType = keyof Comma
 	rest?: boolean;
 }
 
+declare interface CommandsMpInternal<T extends CommandsMpArgs[] = CommandsMpArgs[]> extends CommandsMpOptions<T> {
+    lastUse: Map<number, number>;
+}
+
 declare interface CommandsMp {
 	add: <T extends CommandsMpArgs[]>(command: CommandsMpOptions<T>) => void;
     execute: (player: PlayerMp, raw: string) => void;
-    commands: Map<string, CommandsMpOptions & { lastUse: Map<number, number> }>;
+    commands: Map<string, CommandsMpInternal>;
     getCommands: (player: PlayerMp) => CommandsMpInterface[];
 }
-
 
 declare interface Mp {
 	Player: typeof PlayerMp;
@@ -1996,7 +1999,7 @@ declare interface Mp {
 	/**
 	 * custom command entities
 	 */
-
+	
 	commands: CommandsMp;
 
 }
