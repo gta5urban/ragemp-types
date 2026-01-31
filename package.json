@@ -1,54 +1,56 @@
 {
-	"name": "root",
-	"workspaces": [
-		"packages/*"
-	],
-	"description": "Types definitions for RAGE:MP",
-	"scripts": {
-		"bump-versions": "lerna version --tag-version-prefix='' --no-push"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ragempcommunity/ragemp-types.git"
-	},
-	"author": "@ragempcommunity",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/ragempcommunity/ragemp-types/issues"
-	},
-	"homepage": "https://github.com/ragempcommunity/ragemp-types#readme",
-	"devDependencies": {
-		"lerna": "^4.0.0",
-		"prettier": "^2.4.1"
-	},
-	"keywords": [
-		"gta5",
-		"gta",
-		"ragemp",
-		"rage",
-		"ragemp-ts",
-		"ragemp-dts",
-		"ragemp-types",
-		"typescript"
-	],
-	"prettier": {
-		"$schema": "http://json.schemastore.org/prettierrc",
-		"endOfLine": "lf",
-		"printWidth": 150,
-		"quoteProps": "as-needed",
-		"semi": true,
-		"singleQuote": true,
-		"tabWidth": 4,
-		"trailingComma": "none",
-		"useTabs": true,
-		"overrides": [
-			{
-				"files": "*.yml",
-				"options": {
-					"tabWidth": 2,
-					"useTabs": false
-				}
-			}
-		]
-	}
+    "name": "ragemp-types-root",
+    "private": true,
+    "workspaces": [
+        "packages/*"
+    ],
+    "description": "Types definitions for RAGE:MP",
+    "author": "@gta5urban",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gta5urban/ragemp-types.git"
+    },
+    "bugs": {
+        "url": "https://github.com/gta5urban/ragemp-types/issues"
+    },
+    "homepage": "https://github.com/gta5urban/ragemp-types#readme",
+    "devDependencies": {
+        "prettier": "^2.4.1",
+        "typescript": "^5.2.2"
+    },
+    "scripts": {
+        "build": "pnpm recursive run build",
+        "publish:all": "cd packages/cef && npm publish --access public --registry https://registry.npmjs.org/ && cd ../client && npm publish --access public --registry https://registry.npmjs.org/ && cd ../server && npm publish --access public --registry https://registry.npmjs.org/"
+    },
+    "keywords": [
+        "gta5",
+        "gta",
+        "ragemp",
+        "rage",
+        "ragemp-ts",
+        "ragemp-dts",
+        "ragemp-types",
+        "typescript"
+    ],
+    "prettier": {
+        "$schema": "http://json.schemastore.org/prettierrc",
+        "endOfLine": "lf",
+        "printWidth": 150,
+        "quoteProps": "as-needed",
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "none",
+        "useTabs": true,
+        "overrides": [
+            {
+                "files": "*.yml",
+                "options": {
+                    "tabWidth": 2,
+                    "useTabs": false
+                }
+            }
+        ]
+    }
 }

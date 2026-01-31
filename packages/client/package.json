@@ -1,5 +1,5 @@
 {
-	"name": "@ragempcommunity/types-client",
+	"name": "@gta5urban/types-client",
 	"version": "2.1.9",
 	"description": "Types definitions for RAGE:MP client-side module",
 	"main": "index.d.ts",
@@ -11,7 +11,7 @@
 		"game",
 		"enums"
 	],
-	"author": "@ragempcommunity",
+	"author": "@gta5urban",
 	"license": "MIT",
 	"publishConfig": {
 		"access": "public"
