@@ -1953,7 +1953,7 @@ declare interface CommandsMp {
     getCommands: (player: PlayerMp) => CommandsMpInterface[];
 }
 
-declare namespace rpc {
+declare namespace RpcMp {
     export function register(name: string, cb: ProcedureListener): () => void;
     export function unregister(name: string): void;
 
@@ -2019,7 +2019,7 @@ declare interface Mp {
 	
 	commands: CommandsMp;
 
-	rpc: typeof rpc;
+	rpc: typeof RpcMp;
 
 }
 
